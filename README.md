@@ -4,14 +4,15 @@
 
 * Intro  
 * Figma  
-* Images  
+* Project video
   
 **Intro**
   
-This project is made so all the elements are displayed correctly on popular screen sizes. We recommend investing more time in completing this project, since it's more difficult than previous ones.  
+This project will show a profile page where users can create a profile and share images they have taken around the US. This project is made so all the elements are displayed correctly on both computer and mobile screens. 
   
 **Figma**  
   
 * [Link to the project on Figma](https://www.figma.com/file/ii4xxsJ0ghevUOcssTlHZv/Sprint-3%3A-Around-the-US?node-id=0%3A1)  
 
-* [video about my project] (https://drive.google.com/file/d/1e6bmnm3hMyQcbrXjc125INGgkUPuUbRc/view?usp=sharing) 
+**More about project**
+* [video about my project](https://drive.google.com/file/d/1e6bmnm3hMyQcbrXjc125INGgkUPuUbRc/view?usp=sharing)
