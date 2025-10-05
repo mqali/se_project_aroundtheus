@@ -1,3 +1,23 @@
 .header {
-  margin-top: 45px;
+  min-height: 120px;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid rgba(84, 84, 84, 0.7);
+}
+
+.header__logo {
+  width: 173px;
+  height: 33px;
+}
+
+@media screen and (max-width: 621px) {
+  .header {
+    min-height: 85px;
+  }
+
+  .header__logo {
+    width: 126px;
+    height: 24px;
+    margin: 0 0 0 27px;
+  }
 }
