@@ -80,6 +80,22 @@
   opacity: 0.6;
 }
 
+@media screen and (max-width: 768px) {
+  .profile__info {
+    grid-template-columns: auto;
+  }
+
+  .profile__title {
+    font-size: 32px;
+    line-height: 38px;
+    max-width: 340px;
+  }
+
+  .profile__image {
+    margin: 0 10px 0 0;
+  }
+}
+
 @media screen and (max-width: 621px) {
   .profile {
     flex-direction: column;
@@ -114,21 +130,6 @@
   .profile__add-button {
     margin: 0;
     width: 100%;
-  }
-}
-
-@media screen and (max-width: 768px) {
-  .profile__info {
-    grid-template-columns: auto;
-  }
-
-  .profile__title {
-    font-size: 32px;
-    line-height: 38px;
-    max-width: 340px;
-  }
-
-  .profile__image {
-    margin: 0 10px 0 0;
+    max-width: 282px;
   }
 }
