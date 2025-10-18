@@ -8,3 +8,15 @@
   color: #545454;
   margin-bottom: 60px;
 }
+
+@media screen and (max-width: 621px) {
+  .footer__copyright {
+    font-size: 14px;
+    max-width: 282px;
+    margin-left: 19px;
+    margin-top: 48px;
+    margin-bottom: 36px;
+    justify-content: center;
+    display: flex;
+  }
+}
