@@ -1,0 +1,52 @@
+.popup__content_type_preview {
+  display: flex;
+  position: relative;
+}
+
+.js-preview-popup {
+  display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  align-items: center;
+  justify-content: center;
+  visibility: hidden;
+  pointer-events: none;
+  opacity: 0;
+  transition: visibility 0s linear 0.3s, opacity 0.3s linear;
+}
+
+.popup__opened {
+  visibility: visible;
+  pointer-events: all;
+  opacity: 1;
+  transition-delay: 0s;
+}
+
+.popup__preview-image {
+  max-width: 75vw;
+  max-height: 75vh;
+}
+
+.popup__close {
+  background-image: url(../images/Close\ Icon.svg);
+  position: absolute;
+  cursor: pointer;
+  border: none;
+  width: 40px;
+  height: 40px;
+  top: -45px;
+  right: -45px;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.popup__title {
+  position: absolute;
+  bottom: -50px;
+  left: 0;
+}

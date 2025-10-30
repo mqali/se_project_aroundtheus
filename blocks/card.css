@@ -3,6 +3,7 @@
   flex-direction: column;
   border-radius: 10px;
   list-style: none;
+  position: relative;
 }
 
 .card__image {
@@ -33,6 +34,10 @@
   cursor: pointer;
 }
 
+.card__like-button_active {
+  background-image: url(../images/Like-active.svg);
+}
+
 .card__like-button:hover {
   opacity: 0.6;
 }
@@ -47,4 +52,16 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+}
+
+.card__trash-button {
+  background: transparent url(../images/Trash.svg) no-repeat;
+  position: absolute;
+  top: 20px;
+  right: 15px;
+  width: 18px;
+  height: 19px;
+  padding: 0;
+  border: none;
+  cursor: pointer;
 }
