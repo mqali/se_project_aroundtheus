@@ -7,6 +7,7 @@
     <title>Around the U.S</title>
     <link href="./pages/index.css" rel="stylesheet" />
     <script src="./scripts/index.js" defer></script>
+    <script src="./scripts/validation.js" defer></script>
   </head>
   <body class="page">
     <div class="page__content">
@@ -48,22 +49,33 @@
       <div class="modal__container">
         <button class="modal__close" id="modal-exit-button"></button>
         <p class="modal__heading">Edit profile</p>
-        <form class="modal__form">
+        <form class="modal__form" id="profile-edit-form">
           <input
             type="text"
             name="title"
             id="profile-title-input"
             class="modal__form-input"
             placeholder="Name"
+            minlength="2"
+            maxlength="40"
+            required
           />
+          <span class="popup__error" id="profile-title-input-error"></span>
           <input
             type="text"
             name="description"
             id="profile-description-input"
             class="modal__form-input"
             placeholder="Description"
+            minlength="2"
+            maxlength="200"
+            required
           />
-          <button class="modal__button">Save</button>
+          <span
+            class="popup__error"
+            id="profile-description-input-error"
+          ></span>
+          <button class="modal__button" id="profile-save-button">Save</button>
         </form>
       </div>
     </div>
@@ -79,21 +91,32 @@
             id="profile-title-input"
             class="modal__form-input modal__card-title"
             placeholder="Title"
+            minlength="2"
+            maxlength="30"
+            required
           />
+          <span class="popup__error" id="profile-title-input-error"></span>
+
+          <!-- URL input -->
           <input
-            type="text"
-            name="url"
+            type="url"
+            name="link"
             id="profile-description-input"
             class="modal__form-input modal__card-url"
             placeholder="Image URL"
+            required
           />
+          <span
+            class="popup__error"
+            id="profile-description-input-error"
+          ></span>
           <button class="modal__button">Save</button>
         </form>
       </div>
     </div>
 
     <!-- PopUp-->
-    <div class="popup js-preview-popup">
+    <div class="popup js-preview-popup" id="preview-zoom">
       <div class="popup__content popup__content_type_preview">
         <button type="button" class="popup__close"></button>
         <h3 class="popup__title"></h3>

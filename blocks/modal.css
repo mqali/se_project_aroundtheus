@@ -27,7 +27,6 @@
   background-color: white;
   border-radius: 10px;
   max-width: 430px;
-  /*height: 330px; */
 }
 
 .modal__heading {
@@ -59,7 +58,7 @@
   display: flex;
   flex-direction: column;
   width: 358px;
-  gap: 30px;
+  gap: 20px;
 }
 
 .modal__form-input {
@@ -67,6 +66,7 @@
   border-left: none;
   border-right: none;
   border-bottom: 1px solid #ccc;
+  margin-bottom: 5px;
 }
 
 .modal__button {
@@ -79,4 +79,23 @@
   font-family: "Inter", Arial, sans-serif;
   font-weight: 400;
   font-size: 18px;
+}
+
+.popup__button_disabled {
+  background-color: white;
+  color: #c4c4c4;
+  border: 1px solid #c4c4c4;
+}
+
+.popup__error {
+  font-size: 12px;
+  line-height: 15px;
+  color: red;
+  height: 15px; /* Fixed height */
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.popup__error_visible {
+  opacity: 1;
 }

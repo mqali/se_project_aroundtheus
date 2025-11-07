@@ -145,3 +145,44 @@ addCardCloseButton.addEventListener("click", () => closeCardModal());
 initialCards.forEach(function (cardData) {
   renderCard(cardData, cardListEl);
 });
+
+const removeCard = document.getElementById("add-card-modal");
+removeCard.addEventListener("click", handleCard);
+
+function handleCard(event) {
+  if (event.target === removeCard) removeCard.classList.remove("modal__opened");
+}
+
+const removeProfile = document.getElementById("profile-edit-modal");
+removeProfile.addEventListener("click", handleProfile);
+
+function handleProfile(event) {
+  if (event.target === removeProfile)
+    removeProfile.classList.remove("modal__opened");
+}
+
+const removeImage = document.getElementById("preview-zoom");
+removeImage.addEventListener("click", handleImage);
+
+function handleImage(event) {
+  if (event.target === removeImage)
+    removeImage.classList.remove("popup__opened");
+}
+
+document.addEventListener("keydown", function (e) {
+  if (e.key === "Escape") previewPopup.classList.remove("popup__opened");
+});
+
+function handleEscKey() {
+  if (modalPreviews) {
+  }
+}
+
+document.addEventListener("keydown", function (e) {
+  if (e.key === "Escape") {
+    const modalPreviews = document.querySelector(".modal__opened");
+    if (modalPreviews) {
+      modalPreviews.classList.remove("modal__opened");
+    }
+  }
+});
