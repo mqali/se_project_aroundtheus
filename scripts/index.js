@@ -41,34 +41,32 @@ const profileTitleInput = document.querySelector("#profile-title-input");
 const profileDescriptionInput = document.querySelector(
   "#profile-description-input"
 );
-const profileEditform = profileEditModal.querySelector(".modal__form");
+const profileEditForm = profileEditModal.querySelector(".modal__form");
 const addCardFormElement = addCardModal.querySelector(".modal__form");
 const cardListEl = document.querySelector(".cards__list");
 const cardTemplate =
   document.querySelector("#card-template").content.firstElementChild;
-const previewPopup = document.querySelector(".js-preview-popup");
-const previewImage = previewPopup.querySelector(".popup__preview-image");
-const previewTitle = previewPopup.querySelector(".popup__title");
-const closeButton = previewPopup.querySelector(".popup__close");
+const previewPopup = document.querySelector(".js-preview-modal");
+const previewImage = previewPopup.querySelector(".modal__preview-image");
+const previewTitle = previewPopup.querySelector(".modal__title");
+const closeButton = previewPopup.querySelector(".modal__close");
 
 function closeProfileModal() {
-  profileEditModal.classList.remove("modal__opened");
+  closePopup(profileEditModal);
 }
 function closeCardModal() {
-  addCardModal.classList.remove("modal__opened");
+  closePopup(addCardModal);
 }
 function closePopUp() {
-  previewPopup.classList.remove("popup__opened");
+  closePopup(previewPopup);
 }
 
 function openModal() {
-  addCardModal.classList.add("modal__opened");
+  openPopup(addCardModal);
 }
 
 function getCardElement(cardData) {
   const cardElement = cardTemplate.cloneNode(true);
-  const previewImageModalWindow = document.querySelector(".js-preview-popup");
-  const cardImage = cardElement.querySelector(".card__image");
   const cardImageEl = cardElement.querySelector(".card__image");
   const cardTitleEl = cardElement.querySelector(".card__title");
   const likeButton = cardElement.querySelector(".card__like-button");
@@ -96,20 +94,22 @@ function renderCard(cardData) {
 profileEditButton.addEventListener("click", function () {
   profileTitleInput.value = profileTitle.textContent;
   profileDescriptionInput.value = profileDescription.textContent;
-  profileEditModal.classList.add("modal__opened");
+  openPopup(profileEditModal);
 });
 
 const profileCloseButton = document.querySelector("#modal-exit-button");
-const addCardCloseButton = addCardModal.querySelector("#modal-exit-button");
+const addCardCloseButton = addCardModal.querySelector(".modal__close");
 const cardTitleInput = addCardFormElement.querySelector(".modal__card-title");
 const cardUrlInput = addCardFormElement.querySelector(".modal__card-url");
-const popUpCloseButton = document.querySelector(".popup__close");
+const previewModalCloseButton = previewPopup.querySelector(".modal__close");
 
 function handleAddCardFormsubmit(evt) {
   evt.preventDefault();
   const name = cardTitleInput.value;
   const link = cardUrlInput.value;
   renderCard({ name, link }, cardListEl);
+  cardTitleInput.value = "";
+  cardUrlInput.value = "";
   closeCardModal(addCardModal);
 }
 
@@ -117,20 +117,18 @@ function openPreviewModal(imageSrc, imageAlt, cardTitle) {
   previewImage.src = imageSrc;
   previewImage.alt = imageAlt;
   previewTitle.textContent = cardTitle;
-  const modal = document.querySelector(".js-preview-popup");
-  modal.classList.add("popup__opened");
-  console.log("Class added:", modal.classList.contains("popup__opened"));
+  openPopup(previewPopup);
 }
 
 profileCloseButton.addEventListener("click", function () {
   closeProfileModal();
 });
 
-popUpCloseButton.addEventListener("click", function () {
+previewModalCloseButton.addEventListener("click", function () {
   closePopUp();
 });
 
-profileEditform.addEventListener("submit", function (edit) {
+profileEditForm.addEventListener("submit", function (edit) {
   edit.preventDefault();
   profileTitle.textContent = profileTitleInput.value;
   profileDescription.textContent = profileDescriptionInput.value;
@@ -146,43 +144,46 @@ initialCards.forEach(function (cardData) {
   renderCard(cardData, cardListEl);
 });
 
-const removeCard = document.getElementById("add-card-modal");
-removeCard.addEventListener("click", handleCard);
+addCardModal.addEventListener("click", handleCard);
 
 function handleCard(event) {
-  if (event.target === removeCard) removeCard.classList.remove("modal__opened");
+  if (event.target === addCardModal)
+    addCardModal.classList.remove("modal_opened");
 }
 
-const removeProfile = document.getElementById("profile-edit-modal");
-removeProfile.addEventListener("click", handleProfile);
+profileEditModal.addEventListener("click", handleProfile);
 
 function handleProfile(event) {
-  if (event.target === removeProfile)
-    removeProfile.classList.remove("modal__opened");
+  if (event.target === profileEditModal)
+    profileEditModal.classList.remove("modal_opened");
 }
 
-const removeImage = document.getElementById("preview-zoom");
-removeImage.addEventListener("click", handleImage);
+previewPopup.addEventListener("click", handleImage);
 
 function handleImage(event) {
-  if (event.target === removeImage)
-    removeImage.classList.remove("popup__opened");
+  if (event.target === previewPopup) closePopup(previewPopup);
 }
-
-document.addEventListener("keydown", function (e) {
-  if (e.key === "Escape") previewPopup.classList.remove("popup__opened");
-});
 
 function handleEscKey() {
   if (modalPreviews) {
   }
 }
 
-document.addEventListener("keydown", function (e) {
-  if (e.key === "Escape") {
-    const modalPreviews = document.querySelector(".modal__opened");
-    if (modalPreviews) {
-      modalPreviews.classList.remove("modal__opened");
+function openPopup(popup) {
+  popup.classList.add("modal_opened");
+  document.addEventListener("keydown", handleEscape);
+}
+
+function closePopup(popup) {
+  popup.classList.remove("modal_opened");
+  document.removeEventListener("keydown", handleEscape);
+}
+
+function handleEscape(evt) {
+  if (evt.key === "Escape") {
+    const openedPopup = document.querySelector(".modal_opened");
+    if (openedPopup) {
+      closePopup(openedPopup);
     }
   }
-});
+}

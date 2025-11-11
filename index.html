@@ -60,7 +60,7 @@
             maxlength="40"
             required
           />
-          <span class="popup__error" id="profile-title-input-error"></span>
+          <span class="modal__error" id="profile-title-input-error"></span>
           <input
             type="text"
             name="description"
@@ -72,7 +72,7 @@
             required
           />
           <span
-            class="popup__error"
+            class="modal__error"
             id="profile-description-input-error"
           ></span>
           <button class="modal__button" id="profile-save-button">Save</button>
@@ -82,45 +82,42 @@
     <!-- Add Card Modal-->
     <div class="modal" id="add-card-modal">
       <div class="modal__container">
-        <button class="modal__close" id="modal-exit-button"></button>
+        <button class="modal__close"></button>
         <p class="modal__heading">New Place</p>
         <form class="modal__form" id="add-card-form">
           <input
             type="text"
             name="title"
-            id="profile-title-input"
+            id="card-title-input"
             class="modal__form-input modal__card-title"
             placeholder="Title"
             minlength="2"
             maxlength="30"
             required
           />
-          <span class="popup__error" id="profile-title-input-error"></span>
+          <span class="modal__error" id="card-title-input-error"></span>
 
           <!-- URL input -->
           <input
             type="url"
             name="link"
-            id="profile-description-input"
+            id="card-url-input"
             class="modal__form-input modal__card-url"
             placeholder="Image URL"
             required
           />
-          <span
-            class="popup__error"
-            id="profile-description-input-error"
-          ></span>
+          <span class="modal__error" id="card-url-input-error"></span>
           <button class="modal__button">Save</button>
         </form>
       </div>
     </div>
 
     <!-- PopUp-->
-    <div class="popup js-preview-popup" id="preview-zoom">
-      <div class="popup__content popup__content_type_preview">
-        <button type="button" class="popup__close"></button>
-        <h3 class="popup__title"></h3>
-        <img class="popup__preview-image" src="" alt="" />
+    <div class="modal js-preview-modal" id="preview-zoom">
+      <div class="modal__container">
+        <button type="button" class="modal__close"></button>
+        <h3 class="modal__title"></h3>
+        <img class="modal__preview-image" src="data:," alt="" />
       </div>
     </div>
 
