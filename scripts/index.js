@@ -144,29 +144,26 @@ initialCards.forEach(function (cardData) {
   renderCard(cardData, cardListEl);
 });
 
-addCardModal.addEventListener("click", handleCard);
+addCardModal.addEventListener("click", handleCardModalOverlay);
 
-function handleCard(event) {
-  if (event.target === addCardModal)
-    addCardModal.classList.remove("modal_opened");
-}
-
-profileEditModal.addEventListener("click", handleProfile);
-
-function handleProfile(event) {
-  if (event.target === profileEditModal)
-    profileEditModal.classList.remove("modal_opened");
-}
-
-previewPopup.addEventListener("click", handleImage);
-
-function handleImage(event) {
-  if (event.target === previewPopup) closePopup(previewPopup);
-}
-
-function handleEscKey() {
-  if (modalPreviews) {
+function handleCardModalOverlay(event) {
+  if (event.target === addCardModal) {
+    closePopup(addCardModal);
   }
+}
+
+profileEditModal.addEventListener("click", handleProfileModalOverlay);
+
+function handleProfileModalOverlay(event) {
+  if (event.target === profileEditModal) {
+    closePopup(profileEditModal);
+  }
+}
+
+previewPopup.addEventListener("click", handleImageModalOverlay);
+
+function handleImageModalOverlay(event) {
+  if (event.target === previewPopup) closePopup(previewPopup);
 }
 
 function openPopup(popup) {
