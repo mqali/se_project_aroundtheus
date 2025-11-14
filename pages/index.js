@@ -1,34 +1,37 @@
+import FormValidator from "../components/FormValidator.js";
+import Card from "../components/Card.js";
+
 /* prettier-ignore */
 
 const initialCards = [
   {
     name: "Lago di Braies",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lago.jpg"
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lago.jpg",
   },
   {
     name: "Vanoise National Park",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/vanoise.jpg"
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/vanoise.jpg",
   },
 
-    {
+  {
     name: "Latemar",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/latemar.jpg"
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/latemar.jpg",
   },
 
-      {
+  {
     name: "Bald Mountains",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/bald-mountains.jpg"
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/bald-mountains.jpg",
   },
 
-     {
+  {
     name: "Lake Louise",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lake-louise.jpg"
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lake-louise.jpg",
   },
 
-      {
+  {
     name: "Yosemite Valley",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg"
-  }
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg",
+  },
 ];
 
 const profileEditButton = document.querySelector("#profile-edit-button");
@@ -44,12 +47,28 @@ const profileDescriptionInput = document.querySelector(
 const profileEditForm = profileEditModal.querySelector(".modal__form");
 const addCardFormElement = addCardModal.querySelector(".modal__form");
 const cardListEl = document.querySelector(".cards__list");
-const cardTemplate =
-  document.querySelector("#card-template").content.firstElementChild;
 const previewPopup = document.querySelector(".js-preview-modal");
 const previewImage = previewPopup.querySelector(".modal__preview-image");
 const previewTitle = previewPopup.querySelector(".modal__title");
-const closeButton = previewPopup.querySelector(".modal__close");
+
+const validationSettings = {
+  inputSelector: ".modal__form-input",
+  submitButtonSelector: ".modal__button ",
+  inactiveButtonClass: "modal__button_disabled",
+  inputErrorClass: "modal__input_type_error",
+  errorClass: "modal__error_visible",
+};
+
+const addFormElement = addCardModal.querySelector(".modal__form");
+
+const editFormValidator = new FormValidator(
+  validationSettings,
+  profileEditForm
+);
+editFormValidator.enableValidation();
+
+const addFormValidator = new FormValidator(validationSettings, addFormElement);
+addFormValidator.enableValidation();
 
 function closeProfileModal() {
   closePopup(profileEditModal);
@@ -65,29 +84,9 @@ function openModal() {
   openPopup(addCardModal);
 }
 
-function getCardElement(cardData) {
-  const cardElement = cardTemplate.cloneNode(true);
-  const cardImageEl = cardElement.querySelector(".card__image");
-  const cardTitleEl = cardElement.querySelector(".card__title");
-  const likeButton = cardElement.querySelector(".card__like-button");
-  const cardDeleteButton = cardElement.querySelector(".card__trash-button");
-  likeButton.addEventListener("click", () => {
-    likeButton.classList.toggle("card__like-button_active");
-  });
-  cardDeleteButton.addEventListener("click", () => {
-    cardElement.remove();
-  });
-  cardTitleEl.textContent = cardData.name;
-  cardImageEl.src = cardData.link;
-  cardImageEl.alt = cardData.name;
-  cardImageEl.addEventListener("click", function () {
-    openPreviewModal(cardImageEl.src, cardImageEl.alt, cardTitleEl.textContent);
-  });
-  return cardElement;
-}
-
 function renderCard(cardData) {
-  const cardElement = getCardElement(cardData);
+  const card = new Card(cardData, "#card-template", openPreviewModal);
+  const cardElement = card.getView();
   cardListEl.prepend(cardElement);
 }
 
