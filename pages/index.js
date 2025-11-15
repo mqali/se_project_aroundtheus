@@ -1,38 +1,8 @@
 import FormValidator from "../components/FormValidator.js";
 import Card from "../components/Card.js";
+import { initialCards, validationSettings } from "../utils/constants.js";
 
 /* prettier-ignore */
-
-const initialCards = [
-  {
-    name: "Lago di Braies",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lago.jpg",
-  },
-  {
-    name: "Vanoise National Park",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/vanoise.jpg",
-  },
-
-  {
-    name: "Latemar",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/latemar.jpg",
-  },
-
-  {
-    name: "Bald Mountains",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/bald-mountains.jpg",
-  },
-
-  {
-    name: "Lake Louise",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lake-louise.jpg",
-  },
-
-  {
-    name: "Yosemite Valley",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg",
-  },
-];
 
 const profileEditButton = document.querySelector("#profile-edit-button");
 const addNewCardButton = document.querySelector(".profile__add-button");
@@ -50,14 +20,6 @@ const cardListEl = document.querySelector(".cards__list");
 const previewPopup = document.querySelector(".js-preview-modal");
 const previewImage = previewPopup.querySelector(".modal__preview-image");
 const previewTitle = previewPopup.querySelector(".modal__title");
-
-const validationSettings = {
-  inputSelector: ".modal__form-input",
-  submitButtonSelector: ".modal__button ",
-  inactiveButtonClass: "modal__button_disabled",
-  inputErrorClass: "modal__input_type_error",
-  errorClass: "modal__error_visible",
-};
 
 const addFormElement = addCardModal.querySelector(".modal__form");
 
@@ -93,6 +55,7 @@ function renderCard(cardData) {
 profileEditButton.addEventListener("click", function () {
   profileTitleInput.value = profileTitle.textContent;
   profileDescriptionInput.value = profileDescription.textContent;
+  editFormValidator.resetValidation();
   openPopup(profileEditModal);
 });
 
@@ -109,6 +72,7 @@ function handleAddCardFormsubmit(evt) {
   renderCard({ name, link }, cardListEl);
   cardTitleInput.value = "";
   cardUrlInput.value = "";
+  addFormValidator.resetValidation();
   closeCardModal(addCardModal);
 }
 
