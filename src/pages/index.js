@@ -1,6 +1,8 @@
-import FormValidator from "../../components/FormValidator.js";
-import Card from "../../components/Card.js";
-import { initialCards, validationSettings } from "../utils/constants.js";
+import FormValidator from "../../components/FormValidator";
+import Card from "../../components/Card";
+import { initialCards, validationSettings } from "../utils/utils";
+import "../pages/index.css";
+import Popup from "../../components/Popup.js";
 
 /* prettier-ignore */
 
@@ -51,6 +53,12 @@ function renderCard(cardData) {
   const cardElement = card.getView();
   cardListEl.prepend(cardElement);
 }
+
+const editProfilePopup = new PopupWithForm(
+  "#edit-profile-modal",
+  handleFormSubmit
+);
+const imagePopup = new PopupWithImage("#image-modal");
 
 profileEditButton.addEventListener("click", function () {
   profileTitleInput.value = profileTitle.textContent;
