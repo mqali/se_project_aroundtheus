@@ -2,7 +2,7 @@ import FormValidator from "../../components/FormValidator";
 import Card from "../../components/Card";
 import { initialCards, validationSettings } from "../utils/utils";
 import "../pages/index.css";
-import Popup from "../../components/Popup.js";
+import PopupWithImage from "../../components/PopupWithImage";
 
 /* prettier-ignore */
 
@@ -53,12 +53,6 @@ function renderCard(cardData) {
   const cardElement = card.getView();
   cardListEl.prepend(cardElement);
 }
-
-const editProfilePopup = new PopupWithForm(
-  "#edit-profile-modal",
-  handleFormSubmit
-);
-const imagePopup = new PopupWithImage("#image-modal");
 
 profileEditButton.addEventListener("click", function () {
   profileTitleInput.value = profileTitle.textContent;
@@ -155,3 +149,15 @@ function handleEscape(evt) {
     }
   }
 }
+
+const PopupImage = new PopupWithImage(".js-preview-modal");
+PopupImage.setEventListeners();
+
+const profileNameElement = document.querySelector(".profile__title");
+const profileJobElement = document.querySelector(".profile__subtitle");
+
+// Create the UserInfo instance and give it the elements
+const userInfo = new UserInfo({
+  nameElement: profileNameElement,
+  jobElement: profileJobElement,
+});
