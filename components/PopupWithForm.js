@@ -23,19 +23,11 @@ export default class PopupWithForm extends Popup {
 
   setEventListeners() {
     super.setEventListeners();
-    const formElement = this._popupForm;
 
-    this.formSubmit = (event) => {
+    this._popupForm.addEventListener("submit", (event) => {
       event.preventDefault();
       const inputValues = this._getInputValues();
       this._handleFormSubmit(inputValues);
-    };
-
-    formElement.addEventListener("submit", this.formSubmit);
+    });
   }
 }
-
-/* for index.js
-const newCardPopup = new PopupWithForm("#profile-edit-modal", () => {});
-newCardPopup.open();
-newCardPopup.close(); */
