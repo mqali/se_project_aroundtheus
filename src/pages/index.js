@@ -7,7 +7,7 @@ import "../pages/index.css";
 import PopupWithImage from "../../components/PopupWithImage";
 import Section from "../../components/Section.js";
 import UserInfo from "../../components/UserInfo.js";
-import PopupWithForm from "../../components/PopupWithForm.js";
+import PopupWithForm from "../../components/Popupwithform.js";
 
 const profileEditForm = document.querySelector("#profile-edit-form");
 const addFormElement = document.querySelector("#add-card-form");
