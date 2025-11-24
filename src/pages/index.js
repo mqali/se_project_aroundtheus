@@ -1,3 +1,5 @@
+/* prettier-ignore */
+
 import FormValidator from "../../components/FormValidator";
 import Card from "../../components/Card";
 import { initialCards, validationSettings } from "../utils/utils";
@@ -6,7 +8,6 @@ import PopupWithImage from "../../components/PopupWithImage";
 import Section from "../../components/Section.js";
 import UserInfo from "../../components/UserInfo.js";
 import PopupWithForm from "../../components/PopupWithForm.js";
-/* prettier-ignore */
 
 const profileEditForm = document.querySelector("#profile-edit-form");
 const addFormElement = document.querySelector("#add-card-form");
