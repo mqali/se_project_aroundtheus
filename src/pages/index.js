@@ -7,14 +7,12 @@ import "../pages/index.css";
 import PopupWithImage from "../components/PopupWithImage.js";
 import Section from "../components/Section.js";
 import UserInfo from "../components/UserInfo.js";
-import PopupWithForm from "../components/Popupwithform.js";
+import PopupWithForm from "../components/PopupWithForm.js";
 
 const profileEditForm = document.querySelector("#profile-edit-form");
 const addFormElement = document.querySelector("#add-card-form");
 const profileEditButton = document.querySelector("#profile-edit-button");
 const addNewCardButton = document.querySelector(".profile__add-button");
-
-const cardListEl = document.querySelector(".cards__list");
 
 const editFormValidator = new FormValidator(
   validationSettings,
@@ -75,6 +73,7 @@ const addCardPopup = new PopupWithForm("#add-card-modal", (inputData) => {
   renderCard(cardData);
 
   addFormElement.reset();
+  addFormValidator.resetValidation();
   addCardPopup.close();
 });
 

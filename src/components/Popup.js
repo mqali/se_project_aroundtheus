@@ -13,9 +13,11 @@ export default class Popup {
     document.removeEventListener("keydown", this._handleOverlayEsc);
   }
 
-  _handleEscClose() {
-    this.close();
-  }
+  _handleOverlayEsc = (event) => {
+    if (event.key === "Escape") {
+      this.close();
+    }
+  };
 
   setEventListeners() {
     this._popupElement.addEventListener("mousedown", (event) => {
@@ -26,21 +28,5 @@ export default class Popup {
         this.close();
       }
     });
-
-    // Handle overlay click
-    this._handleOverlayClick = (event) => {
-      if (event.target === this._popupElement) {
-        this.close();
-      }
-    };
-    this._popupElement.addEventListener("click", this._handleOverlayClick);
-
-    // Handle Escape key
-    this._handleOverlayEsc = (event) => {
-      if (event.key === "Escape") {
-        this._handleEscClose();
-      }
-    };
-    document.addEventListener("keydown", this._handleOverlayEsc);
   }
 }
