@@ -1,13 +1,13 @@
 /* prettier-ignore */
 
-import FormValidator from "../../components/FormValidator";
-import Card from "../../components/Card";
+import FormValidator from "../components/FormValidator.js";
+import Card from "../components/Card.js";
 import { initialCards, validationSettings } from "../utils/utils";
 import "../pages/index.css";
-import PopupWithImage from "../../components/PopupWithImage";
-import Section from "../../components/Section.js";
-import UserInfo from "../../components/UserInfo.js";
-import PopupWithForm from "../../components/Popupwithform.js";
+import PopupWithImage from "../components/PopupWithImage.js";
+import Section from "../components/Section.js";
+import UserInfo from "../components/UserInfo.js";
+import PopupWithForm from "../components/Popupwithform.js";
 
 const profileEditForm = document.querySelector("#profile-edit-form");
 const addFormElement = document.querySelector("#add-card-form");
