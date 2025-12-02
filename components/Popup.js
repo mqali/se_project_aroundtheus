@@ -5,10 +5,12 @@ export default class Popup {
 
   open() {
     this._popupElement.classList.add("modal_opened");
+    document.addEventListener("keydown", this._handleOverlayEsc);
   }
 
   close() {
     this._popupElement.classList.remove("modal_opened");
+    document.removeEventListener("keydown", this._handleOverlayEsc);
   }
 
   _handleEscClose() {
@@ -16,10 +18,14 @@ export default class Popup {
   }
 
   setEventListeners() {
-    const closeButton = this._popupElement.querySelector(".modal__close");
-    if (closeButton) {
-      closeButton.addEventListener("click", () => this.close());
-    }
+    this._popupElement.addEventListener("mousedown", (event) => {
+      if (
+        event.target === this._popupElement ||
+        event.target.classList.contains("modal__close")
+      ) {
+        this.close();
+      }
+    });
 
     // Handle overlay click
     this._handleOverlayClick = (event) => {

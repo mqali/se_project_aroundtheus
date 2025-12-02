@@ -28,14 +28,14 @@ addFormValidator.enableValidation();
 function renderCard(cardData) {
   const card = new Card(cardData, "#card-template", newPopup);
   const cardElement = card.getView();
-  cardListEl.prepend(cardElement);
+  section.addItem(cardElement);
 }
 
-const PopupImage = new PopupWithImage(".js-preview-modal");
-PopupImage.setEventListeners();
+const popupImage = new PopupWithImage(".js-preview-modal");
+popupImage.setEventListeners();
 
 function newPopup(link, name, alt) {
-  PopupImage.open({ link, name, alt });
+  popupImage.open({ link, name, alt });
 }
 
 const userInfo = new UserInfo({
@@ -71,21 +71,26 @@ const addCardPopup = new PopupWithForm("#add-card-modal", (inputData) => {
     name: inputData.title,
     link: inputData.link,
   };
+
   renderCard(cardData);
-  addCardPopup.close(); // Add this line
+
+  addFormElement.reset();
+  addCardPopup.close();
 });
 
 addCardPopup.setEventListeners();
 
+// Manually populate the form fields
+const nameInput = profileEditForm.querySelector('input[name="title"]');
+const jobInput = profileEditForm.querySelector('input[name="description"]');
+
 profileEditButton.addEventListener("click", () => {
   const currentUserInfo = userInfo.getUserInfo();
 
-  // Manually populate the form fields
-  const nameInput = profileEditForm.querySelector('input[name="title"]');
-  const jobInput = profileEditForm.querySelector('input[name="description"]');
-
   nameInput.value = currentUserInfo.name;
   jobInput.value = currentUserInfo.job;
+
+  editFormValidator.resetValidation();
 
   profileEditPopup.open();
 });

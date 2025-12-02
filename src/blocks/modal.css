@@ -41,7 +41,7 @@
 }
 
 .modal__close {
-  background-image: url(../images/Close\ Icon.svg);
+  background-image: url(../images/Close-Icon.svg);
   position: absolute;
   cursor: pointer;
   border: none;
@@ -101,7 +101,7 @@
 }
 
 .modal__close {
-  background-image: url(../images/Close\ Icon.svg);
+  background-image: url(../images/Close-Icon.svg);
   position: absolute;
   cursor: pointer;
   border: none;
